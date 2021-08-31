@@ -11,10 +11,18 @@ class Site < ApplicationRecord
     logo.variant(resize: '440>').processed
   end
 
+  def terms_of_use_content
+    @terms_of_use_content
+  end
+
+  def terms_of_use_content=(val)
+    terms_of_use_content_will_change! unless val == @terms_of_use_content
+    @terms_of_use_content = val
+  end
+
   private
 
   def parse_markdown
-    # turns terms_of_use_content into HTML
     if terms_of_use_content
       markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
       self.terms_of_use_content_parsed = markdown.render(terms_of_use_content)
