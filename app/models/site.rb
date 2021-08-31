@@ -11,15 +11,6 @@ class Site < ApplicationRecord
     logo.variant(resize: '440>').processed
   end
 
-  def terms_of_use_content
-    @terms_of_use_content
-  end
-
-  def terms_of_use_content=(val)
-    terms_of_use_content_will_change! unless val == @terms_of_use_content
-    @terms_of_use_content = val
-  end
-
   private
 
   def parse_markdown
