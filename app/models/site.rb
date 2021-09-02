@@ -1,6 +1,7 @@
 class Site < ApplicationRecord
   has_one_attached :logo
   validates :logo, content_type: [ :jpg, :png, :gif ], size: { less_than: 3.megabytes }
+  include ActiveModel::Dirty
   before_save :parse_markdown
 
   def self.load

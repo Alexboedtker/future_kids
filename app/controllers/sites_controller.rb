@@ -19,6 +19,8 @@ class SitesController < ApplicationController
 
   def update
     if @site.update(site_params)
+      # an array with the first element being the previous content and the second element being the new content
+      @terms_of_use_content_previous_change = @site.terms_of_use_content_previous_change
       redirect_to edit_site_url, notice: I18n.t('crud.action.update_success')
     else
       render action: :edit
